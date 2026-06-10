@@ -7,8 +7,8 @@
     <style>
         body{font-family:Arial,sans-serif;max-width:600px;margin:20px auto;padding:10px;text-align:center}
         .search-box{margin:150px 0}
-        input[type=text]{padding:10px;font-size:16px;width:90%;max-width:300px;text-align:center;border:none;outline:none;border-bottom:2px solid #ccc}
-        .result{font-size:80px;font-weight:bold;margin-top:30px;height:100px;line-height:100px;word-wrap:break-word;overflow:hidden}
+        input[type=text]{padding:10px;font-size:16px;width:90%;max-width:300px;text-align:center;border:none;outline:none;border-bottom:1px solid #ccc}
+        .result{font-size:80px;font-weight:bold;margin-top:10px;height:100px;line-height:100px;word-wrap:break-word;overflow:hidden}
         .result.found{color:green}
         .result.not-found{color:red}
         .secret-zone{position:absolute;top:0;right:0;width:100px;height:100px;cursor:pointer;opacity:0}
@@ -28,7 +28,7 @@
 </head>
 <body>
     <div class="secret-zone" onclick="showPasswordPrompt()"></div>
-    <div class="search-box"><input type="text" id="numberInput" /></div>
+    <div class="search-box"><input type="password" id="numberInput" /></div>
     <div id="result" class="result"></div>
     <div id="passwordModal" class="modal-overlay">
         <div class="modal">
@@ -51,7 +51,7 @@
         </div>
     </div>
     <script>
-        var PASSWORD = "woainimm";
+        var PASSWORD = "88888888";
         var numbersArray = [];
         async function loadArray() {
             try {
