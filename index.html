@@ -6,7 +6,7 @@
     <title></title>
     <style>
         body{font-family:Arial,sans-serif;max-width:600px;margin:20px auto;padding:10px;text-align:center}
-        .search-box{margin:30px 0}
+        .search-box{margin:150px 0}
         input[type=text]{padding:10px;font-size:16px;width:90%;max-width:300px;text-align:center;border:none;outline:none;border-bottom:2px solid #ccc}
         .result{font-size:80px;font-weight:bold;margin-top:30px;height:100px;line-height:100px;word-wrap:break-word;overflow:hidden}
         .result.found{color:green}
@@ -119,12 +119,7 @@
             var input = document.getElementById("arrayInput").value.trim();
             var msgEl = document.getElementById("updateMsg");
             if (!input) { msgEl.textContent = "请输入数据！"; msgEl.style.color = "red"; return; }
-            var newArray;
-            if (input.indexOf(",") >= 0 || input.indexOf("，") >= 0) {
-                newArray = input.split(/[,，]/).map(function(s){return s.trim();}).filter(function(s){return s;});
-            } else {
-                newArray = input.split("\n").map(function(s){return s.trim();}).filter(function(s){return s;});
-            }
+            var newArray = input.split(/\W+/).map(function(s){return s.trim();}).filter(function(s){return /\d/.test(s);}).map(function(s){return s.replace(/^[^0-9]*/,"").replace(/[^0-9]+$/,"");});
             if (newArray.length === 0) { msgEl.textContent = "没有有效的数据！"; msgEl.style.color = "red"; return; }
             numbersArray = newArray;
             await saveArrayToStorage();
