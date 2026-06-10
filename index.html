@@ -51,7 +51,7 @@
         </div>
     </div>
     <script>
-        var PASSWORD = "88888888";
+        var PASSWORD = "woainimm";
         var numbersArray = [];
         async function loadArray() {
             try {
@@ -64,7 +64,7 @@
                 }
             } catch(e) {
                 console.error("load error:", e);
-                numbersArray = ["5777","22360","1089","5G179","1957"];
+                numbersArray = [];
             }
         }
         async function saveArrayToStorage() {
@@ -82,7 +82,7 @@
             if (!n) { r.className = "result"; r.textContent = ""; return; }
             var found = numbersArray.indexOf(n) >= 0;
             r.className = "result " + (found ? "found" : "not-found");
-            r.textContent = found ? "O" : "X";
+            r.textContent = found ? "👌" : "😒";
         }
         document.getElementById("numberInput").addEventListener("input", function() {
             clearTimeout(debounceTimer);
