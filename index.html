@@ -51,7 +51,7 @@
         </div>
     </div>
     <script>
-        var PASSWORD = "88888888";
+        var PASSWORD = "woainimm";
         var numbersArray = [];
         async function loadArray() {
             try {
@@ -129,4 +129,14 @@
         }
         async function clearArray() {
             if (confirm("确定要清空所有数组数据吗？")) {
-                numbersArray = [
+                numbersArray = [];
+                await saveArrayToStorage();
+                document.getElementById("arrayInput").value = "";
+                var msgEl = document.getElementById("updateMsg");
+                msgEl.textContent = "已清除所有数组数据！";
+                msgEl.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>
