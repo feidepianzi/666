@@ -39,7 +39,7 @@ input[type=password]::placeholder{color:rgba(255,255,255,0.2);letter-spacing:1px
 .modal .btn-clear{background:rgba(255,152,0,0.15);color:#ffb74d;border:1px solid rgba(255,152,0,0.3)}.modal .btn-clear:hover{background:rgba(255,152,0,0.25)}
 .array-count{font-size:12px;color:rgba(255,255,255,0.35);margin-left:10px}
 .error-msg{color:#ef5350;font-size:14px;margin-top:10px}
-@media(max-width:600px){.result{font-size:60px;height:80px;line-height:80px}.modal{min-width:280px;padding:20px}.search-box{padding:20px 16px}.logo svg{width:60px;height:60px}.search-row{flex-wrap:nowrap;gap:8px}.search-row input[type=password]{width:auto;flex:1 1 0;min-width:0}.btn-clear-search{padding:8px 12px;font-size:11px}}
+@media(max-width:600px){.result{font-size:60px;height:80px;line-height:80px}.modal{min-width:280px;padding:20px}.search-box{padding:20px 16px}.logo svg{width:60px;height:60px}.search-row{flex-wrap:nowrap;gap:8px}.search-row input[type=password]{width:auto;flex:1 1 0;min-width:0}}
 
 /* ===== 新增：状态指示灯 + 清除按钮 ===== */
 .status-line{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.6);min-height:20px}
@@ -57,7 +57,7 @@ input[type=password]::placeholder{color:rgba(255,255,255,0.2);letter-spacing:1px
 <div class="stars" id="stars"></div>
 <div class="main-wrap">
 <div class="logo">
-<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="location.reload()" style="cursor:pointer">
 <circle cx="50" cy="38" r="22" stroke="rgba(100,180,255,0.6)" stroke-width="2"/>
 <path d="M50 16 C50 16 38 28 38 38 C38 48 50 60 50 60 C50 60 62 48 62 38 C62 28 50 16 50 16Z" fill="rgba(100,180,255,0.15)" stroke="rgba(100,180,255,0.6)" stroke-width="1.5"/>
 <circle cx="50" cy="38" r="6" fill="rgba(100,180,255,0.4)"/>
