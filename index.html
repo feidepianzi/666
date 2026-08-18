@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -7,33 +8,23 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;min-height:100vh;overflow-x:hidden}
-body{background:#0f1923;font-family:'Segoe UI',Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;position:relative}
+body{background:#0f1923;font-family:'Segoe UI',Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;color:#fff;position:relative;padding-top:40px}
 body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at 20% 50%,rgba(30,80,160,0.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(0,150,200,0.15) 0%,transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(60,40,120,0.2) 0%,transparent 50%);pointer-events:none;z-index:0}
 .stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
 .star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;opacity:0}
 @keyframes twinkle{0%{opacity:0.1;transform:scale(0.8)}100%{opacity:var(--o);transform:scale(1)}}
 .main-wrap{position:relative;z-index:2;width:100%;max-width:600px;padding:20px;text-align:center}
-.logo{margin-bottom:40px}
+.logo{margin-bottom:24px}
 .logo svg{width:80px;height:80px;filter:drop-shadow(0 0 20px rgba(100,180,255,0.4))}
 .logo-text{margin-top:12px;font-size:18px;letter-spacing:6px;color:rgba(255,255,255,0.7);font-weight:300}
-.search-box{position:relative;z-index:2;margin:0 auto 30px;width:90%;max-width:400px;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:24px 20px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 40px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.08)}
+.search-box{position:relative;z-index:2;margin:0 auto 20px;width:90%;max-width:400px;background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:24px 20px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 8px 40px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.08)}
 .search-box p{margin:0 0 10px;font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:2px}
-.search-row{display:flex;align-items:center;gap:10px}
-.search-row input{flex:1;min-width:0}
-.btn-clear-input{padding:10px 16px;font-size:14px;background:rgba(255,255,255,0.1);color:#fff;border:none;border-radius:8px;cursor:pointer;white-space:nowrap;transition:all .2s}
-.btn-clear-input:hover{background:rgba(255,255,255,0.2)}
 input[type=password]{width:100%;padding:12px 0;font-size:18px;text-align:center;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,0.15);outline:none;color:#fff;letter-spacing:4px;transition:border-color .3s}
 input[type=password]:focus{border-bottom-color:rgba(100,180,255,0.5)}
 input[type=password]::placeholder{color:rgba(255,255,255,0.2);letter-spacing:1px}
 .result{font-size:80px;font-weight:bold;margin-top:20px;height:100px;line-height:100px;letter-spacing:8px;text-shadow:0 0 30px currentColor;transition:all .3s}
 .result.found{color:#4fc3f7}
 .result.not-found{color:#ef5350}
-.status-area{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px}
-.status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;box-shadow:0 0 10px currentColor;transition:all .3s}
-.status-dot.loading{background:#ef5350;color:#ef5350}
-.status-dot.ready{background:#4fc3f7;color:#4fc3f7}
-.status-dot.error{background:#ffb74d;color:#ffb74d}
-.status-label{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:1px}
 .secret-zone{position:fixed;top:0;right:0;width:80px;height:80px;cursor:pointer;z-index:10}
 .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:1000}
 .modal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a2332;padding:30px;border-radius:12px;min-width:350px;max-width:90%;max-height:90vh;overflow-y:auto;border:1px solid rgba(255,255,255,0.1);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
@@ -50,6 +41,17 @@ input[type=password]::placeholder{color:rgba(255,255,255,0.2);letter-spacing:1px
 .array-count{font-size:12px;color:rgba(255,255,255,0.35);margin-left:10px}
 .error-msg{color:#ef5350;font-size:14px;margin-top:10px}
 @media(max-width:600px){.result{font-size:60px;height:80px;line-height:80px}.modal{min-width:280px;padding:20px}.search-box{padding:20px 16px}.logo svg{width:60px;height:60px}}
+
+/* ===== 新增：状态指示灯 + 清除按钮 ===== */
+.status-line{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:13px;color:rgba(255,255,255,0.6);min-height:20px}
+.status-dot{width:10px;height:10px;border-radius:50%}
+.status-dot.loading{background:#ef5350;box-shadow:0 0 8px rgba(239,83,80,0.6)}
+.status-dot.ready{background:#66bb6a;box-shadow:0 0 8px rgba(102,187,106,0.6)}
+.status-dot.error{background:#ff9800;box-shadow:0 0 8px rgba(255,152,0,0.6)}
+.search-row{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:4px}
+.search-row input[type=password]{width:200px;flex:0 0 auto}
+.btn-clear-search{padding:10px 18px;font-size:14px;border:none;border-radius:8px;cursor:pointer;background:rgba(255,152,0,0.15);color:#ffb74d;border:1px solid rgba(255,152,0,0.3);transition:all .2s;letter-spacing:2px}
+.btn-clear-search:hover{background:rgba(255,152,0,0.25)}
 </style>
 </head>
 <body>
@@ -66,46 +68,52 @@ input[type=password]::placeholder{color:rgba(255,255,255,0.2);letter-spacing:1px
 </svg>
 <div class="logo-text">CLOUD VAULT</div>
 </div>
-<div class="search-box"><p>请输入网盘密码：</p><div class="search-row"><input type="password" id="numberInput" placeholder="····" /><button type="button" class="btn-clear-input" onclick="clearSearch()">清除</button></div></div>
+<div class="search-box">
+<p>请输入网盘密码：</p>
+<div class="search-row">
+<input type="password" id="numberInput" placeholder="····" />
+<button type="button" id="clearSearchBtn" class="btn-clear-search">清除</button>
+</div>
+</div>
+<div class="status-line"><span id="statusDot" class="status-dot loading"></span><span id="statusText">数组加载中…</span></div>
 <div id="result" class="result"></div>
-<div class="status-area"><span id="statusDot" class="status-dot loading"></span><span id="statusText" class="status-label">数组加载中...</span></div>
 </div>
 
 <div class="secret-zone" onclick="showPasswordPrompt()"></div>
 
 <div id="passwordModal" class="modal-overlay">
-    <div class="modal">
-        <h2>请输入密码</h2>
-        <input type="password" id="passwordInput" placeholder="密码" /><br/>
-        <button class="btn-confirm" onclick="checkPassword()">确认</button>
-        <button class="btn-cancel" onclick="hidePasswordPrompt()">取消</button>
-        <div id="passwordError" class="error-msg"></div>
-    </div>
+ <div class="modal">
+ <h2>请输入密码</h2>
+ <input type="password" id="passwordInput" placeholder="密码" /><br/>
+ <button class="btn-confirm" onclick="checkPassword()">确认</button>
+ <button class="btn-cancel" onclick="hidePasswordPrompt()">取消</button>
+ <div id="passwordError" class="error-msg"></div>
+ </div>
 </div>
 
 <div id="updateModal" class="modal-overlay">
-    <div class="modal">
-        <h2>管理数组数据</h2>
-        <h3>主数组 (frontend) <span id="countFrontend" class="array-count"></span></h3>
-        <textarea id="inputFrontend" placeholder="每行一个编号"></textarea>
-        <button class="btn-clear" onclick="clearFrontend()">一键清除主数组</button>
+ <div class="modal">
+ <h2>管理数组数据</h2>
+ <h3>主数组 (frontend) <span id="countFrontend" class="array-count"></span></h3>
+ <textarea id="inputFrontend" placeholder="每行一个编号"></textarea>
+ <button class="btn-clear" onclick="clearFrontend()">一键清除主数组</button>
 
-        <h3>后台数组1 (backend1) <span id="countBackend1" class="array-count"></span></h3>
-        <textarea id="inputBackend1" placeholder="每行一个编号"></textarea>
-        <button class="btn-clear" onclick="clearBackend1()">一键清除 backend1</button>
+ <h3>后台数组1 (backend1) <span id="countBackend1" class="array-count"></span></h3>
+ <textarea id="inputBackend1" placeholder="每行一个编号"></textarea>
+ <button class="btn-clear" onclick="clearBackend1()">一键清除 backend1</button>
 
-        <h3>后台数组2 (backend2) <span id="countBackend2" class="array-count"></span></h3>
-        <textarea id="inputBackend2" placeholder="每行一个编号"></textarea>
-        <button class="btn-clear" onclick="clearBackend2()">一键清除 backend2</button>
+ <h3>后台数组2 (backend2) <span id="countBackend2" class="array-count"></span></h3>
+ <textarea id="inputBackend2" placeholder="每行一个编号"></textarea>
+ <button class="btn-clear" onclick="clearBackend2()">一键清除 backend2</button>
 
-        <div style="margin-top:15px">
-            <button class="btn-save" onclick="saveAllArrays()">保存全部</button>
-            <button class="btn-cancel" onclick="hideUpdateModal()">取消</button>
-        </div>
-        <div id="updateMsg" class="error-msg"></div>
-    </div>
+ <div style="margin-top:15px">
+ <button class="btn-save" onclick="saveAllArrays()">保存全部</button>
+ <button class="btn-cancel" onclick="hideUpdateModal()">取消</button>
+ </div>
+ <div id="updateMsg" class="error-msg"></div>
+ </div>
 </div>
 
-<script>(function(){var c=document.getElementById('stars');for(var i=0;i<60;i++){var s=document.createElement('div');s.className='star';var sz=Math.random()*2+1;s.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--d:'+(Math.random()*3+2)+'s;--o:'+(Math.random()*0.5+0.3)+';animation-delay:'+Math.random()*3+'s';c.appendChild(s);}})();var PASSWORD = String.fromCharCode(119,111,97,105,110,105,109,109);var dataObj ={frontend:[],backend1:[],backend2:[]};var numbersArray = [];async function loadArray(){setStatus('loading');try{var resp = await fetch("/api/data");if(resp.ok){dataObj = await resp.json();numbersArray = (dataObj.frontend||[]).concat(dataObj.backend1||[],dataObj.backend2||[]);setStatus('ready');}else{setStatus('error');}}catch(e){dataObj ={frontend:[],backend1:[],backend2:[]};numbersArray = [];setStatus('error');}}function setStatus(state){var dot=document.getElementById("statusDot");var txt=document.getElementById("statusText");if(!dot||!txt)return;dot.className="status-dot "+state;if(state==='ready'){txt.textContent="数组已加载 ("+numbersArray.length+" 项)";}else if(state==='loading'){txt.textContent="数组加载中...";}else{txt.textContent="数组加载失败，请刷新";}}function clearSearch(){var inp=document.getElementById("numberInput");inp.value="";var r=document.getElementById("result");r.className="result";r.textContent="";inp.focus();}async function saveAllArraysToStorage(){await fetch("/api/data",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dataObj)});}loadArray();var debounceTimer = null;function checkNumber(){var n = document.getElementById("numberInput").value.trim();var r = document.getElementById("result");if(!n){r.className="result";r.textContent="";return;}var matchWithSuffix = null,matchNumberOnly = null;for(var i = 0;i < numbersArray.length;i++){var item = numbersArray[i];var parts = item.split('-');var numPart = parts[0],hasSuffix = parts.length > 1;if(numPart === n || item === n){if(hasSuffix){matchWithSuffix = item;break;}else if(!matchNumberOnly){matchNumberOnly = item;}}}if(matchWithSuffix){r.className="result found";r.textContent="OO";}else if(matchNumberOnly){r.className="result found";r.textContent="O";}else{r.className="result not-found";r.textContent="X";}}document.getElementById("numberInput").addEventListener("input",function(){clearTimeout(debounceTimer);debounceTimer=setTimeout(checkNumber,500);});document.getElementById("numberInput").addEventListener("keypress",function(e){if(e.key==="Enter"){clearTimeout(debounceTimer);checkNumber();}});function showPasswordPrompt(){var m=document.getElementById("passwordModal");m.style.display="block";document.getElementById("passwordInput").value="";document.getElementById("passwordError").textContent="";document.getElementById("passwordInput").focus();}function hidePasswordPrompt(){document.getElementById("passwordModal").style.display="none";}function checkPassword(){if(document.getElementById("passwordInput").value===PASSWORD){hidePasswordPrompt();showUpdateModal();}else{document.getElementById("passwordError").textContent="密码错误！";}}document.getElementById("passwordInput").addEventListener("keypress",function(e){if(e.key==="Enter")checkPassword();});function parseInput(input){if(!input.trim()) return [];var firstHouIdx = input.indexOf('\u539a');var result = [];var lines = input.split('\n');for(var li=0;li<lines.length;li++){var tline = lines[li].trim();if(!tline) continue;var items = tline.split(/[\u3001\u3002,\s\r]+/);for(var pi=0;pi<items.length;pi++){var p = items[pi].trim();if(!p) continue;var nm = p.match(/^([0-9A-Za-z]+)/);if(!nm) continue;var firstNumIdx = input.indexOf(nm[1]);if(firstHouIdx >= 0 && firstNumIdx >= 0 && firstNumIdx < firstHouIdx){result.push(nm[1] + '-\u539a');}else{result.push(nm[1]);}}}var seen ={};var final = [];for(var ri=0;ri<result.length;ri++){if(!seen[result[ri]]){seen[result[ri]]=true;final.push(result[ri]);}}return final;}function showUpdateModal(){document.getElementById("updateModal").style.display="block";document.getElementById("inputFrontend").value=(dataObj.frontend||[]).join("\n");document.getElementById("inputBackend1").value=(dataObj.backend1||[]).join("\n");document.getElementById("inputBackend2").value=(dataObj.backend2||[]).join("\n");document.getElementById("countFrontend").textContent="("+(dataObj.frontend||[]).length+" 条已有)";document.getElementById("countBackend1").textContent="("+(dataObj.backend1||[]).length+" 条已有)";document.getElementById("countBackend2").textContent="("+(dataObj.backend2||[]).length+" 条已有)";document.getElementById("updateMsg").textContent="直接编辑，保存后原样覆盖整个数组（删掉的行会被真正删除）";document.getElementById("updateMsg").style.color="rgba(255,255,255,0.4)";}function updateCounts(){var fe=(dataObj.frontend||[]).length;var b1=(dataObj.backend1||[]).length;var b2=(dataObj.backend2||[]).length;document.getElementById("countFrontend").textContent="("+fe+" 条已有)";document.getElementById("countBackend1").textContent="("+b1+" 条已有)";document.getElementById("countBackend2").textContent="("+b2+" 条已有)";}document.getElementById("inputFrontend").addEventListener("input",updateCounts);document.getElementById("inputBackend1").addEventListener("input",updateCounts);document.getElementById("inputBackend2").addEventListener("input",updateCounts);function hideUpdateModal(){document.getElementById("updateModal").style.display="none";}async function clearFrontend(){if(confirm("确定要清除主数组吗？")){document.getElementById("inputFrontend").value="";dataObj.frontend=[];updateCounts();await saveAllArraysToStorage();}}async function clearBackend1(){if(confirm("确定要清除 backend1 吗？")){document.getElementById("inputBackend1").value="";dataObj.backend1=[];updateCounts();await saveAllArraysToStorage();}}async function clearBackend2(){if(confirm("确定要清除 backend2 吗？")){document.getElementById("inputBackend2").value="";dataObj.backend2=[];updateCounts();await saveAllArraysToStorage();}}async function saveAllArrays(){var msgEl=document.getElementById("updateMsg");function getArr(textareaId){var text=document.getElementById(textareaId).value;var lines=text.split('\n');var arr=[];for(var li=0;li<lines.length;li++){var t=lines[li].trim();if(!t)continue;if(arr.indexOf(t)<0)arr.push(t);}return arr;}var fe=getArr("inputFrontend");var b1=getArr("inputBackend1");var b2=getArr("inputBackend2");dataObj.frontend=fe;dataObj.backend1=b1;dataObj.backend2=b2;await saveAllArraysToStorage();numbersArray=fe.concat(b1,b2);msgEl.textContent="保存成功！共"+numbersArray.length+"条数据。";msgEl.style.color="#4fc3f7";setTimeout(hideUpdateModal,2000);}</script>
+<script>(function(){var c=document.getElementById('stars');for(var i=0;i<60;i++){var s=document.createElement('div');s.className='star';var sz=Math.random()*2+1;s.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--d:'+(Math.random()*3+2)+'s;--o:'+(Math.random()*0.5+0.3)+';animation-delay:'+Math.random()*3+'s';c.appendChild(s);}})();var PASSWORD = String.fromCharCode(119,111,97,105,110,105,109,109);var dataObj ={frontend:[],backend1:[],backend2:[]};var numbersArray = [];function setStatus(state){var dot=document.getElementById("statusDot");var txt=document.getElementById("statusText");if(!dot||!txt)return;dot.className="status-dot "+state;if(state==='ready'){txt.textContent="数组已加载（"+numbersArray.length+" 条）";}else if(state==='loading'){txt.textContent="数组加载中…";}else{txt.textContent="数组加载失败，请刷新";}}function clearSearch(){var inp=document.getElementById("numberInput");inp.value="";var r=document.getElementById("result");r.className="result";r.textContent="";inp.focus();}async function loadArray(){setStatus('loading');try{var resp = await fetch("/api/data");if(resp.ok){dataObj = await resp.json();numbersArray = (dataObj.frontend||[]).concat(dataObj.backend1||[],dataObj.backend2||[]);setStatus('ready');}else{setStatus('error');}}catch(e){dataObj ={frontend:[],backend1:[],backend2:[]};numbersArray = [];setStatus('error');}}async function saveAllArraysToStorage(){console.log("POSTing:",JSON.stringify(dataObj));var r=await fetch("/api/data",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dataObj)});console.log("Response status:",r.status);var t=await r.text();console.log("Response body:",t);if(!r.ok){throw new Error("服务器返回"+r.status+": "+t);}}loadArray();var debounceTimer = null;function checkNumber(){var n = document.getElementById("numberInput").value.trim();var r = document.getElementById("result");if(!n){r.className="result";r.textContent="";return;}var matchWithSuffix = null,matchNumberOnly = null;for(var i = 0;i < numbersArray.length;i++){var item = numbersArray[i];var parts = item.split('-');var numPart = parts[0],hasSuffix = parts.length > 1;if(numPart === n || item === n){if(hasSuffix){matchWithSuffix = item;break;}else if(!matchNumberOnly){matchNumberOnly = item;}}}if(matchWithSuffix){r.className="result found";r.textContent="👌👌";}else if(matchNumberOnly){r.className="result found";r.textContent="👌";}else{r.className="result not-found";r.textContent="😭";}}document.getElementById("numberInput").addEventListener("input",function(){clearTimeout(debounceTimer);debounceTimer=setTimeout(checkNumber,500);});document.getElementById("numberInput").addEventListener("keypress",function(e){if(e.key==="Enter"){clearTimeout(debounceTimer);checkNumber();}});document.getElementById("clearSearchBtn").addEventListener("click",clearSearch);function showPasswordPrompt(){var m=document.getElementById("passwordModal");m.style.display="block";document.getElementById("passwordInput").value="";document.getElementById("passwordError").textContent="";document.getElementById("passwordInput").focus();}function hidePasswordPrompt(){document.getElementById("passwordModal").style.display="none";}function checkPassword(){if(document.getElementById("passwordInput").value===PASSWORD){hidePasswordPrompt();showUpdateModal();}else{document.getElementById("passwordError").textContent="密码错误！";}}document.getElementById("passwordInput").addEventListener("keypress",function(e){if(e.key==="Enter")checkPassword();});function parseInput(input){if(!input.trim())return[];var lines=input.split('\n');var addHou=[];for(var i=0;i<lines.length;i++){addHou[i]=false;if(i+1<lines.length && lines[i+1].indexOf('厚')>=0){addHou[i]=true}}var out=[];for(var i=0;i<lines.length;i++){var t=lines[i].trim();if(!t)continue;var lineHasHou=t.indexOf('厚')>=0;var items=t.split(/[、。]+/);for(var ii=0;ii<items.length;ii++){var item=items[ii].trim();if(!item)continue;var commaIdx=item.indexOf('，');var suffix='';if(commaIdx>=0){suffix=item.substring(commaIdx+1).trim().replace(/[\u4e00-\u9fff]+/g,'');}var rawId=commaIdx>=0?item.substring(0,commaIdx).trim():item;if(!rawId)continue;if(!/[0-9A-Za-z]/.test(rawId))continue;var num;if(/^[\u4e00-\u9fff]/.test(rawId)){var idNoChinese=rawId.replace(/[\u4e00-\u9fff]+/g,'');var lm=idNoChinese.match(/^([A-Za-z]+)(.*)$/);if(lm){num=lm[2]||''}if(!num)continue;}else{var m=rawId.match(/^([0-9A-Za-z]+)/);if(!m)continue;num=m[1];}if(suffix){out.push(num+'-'+suffix);}else if(lineHasHou || item.indexOf('厚')>=0 || addHou[i]){out.push(num+'-厚');}else{out.push(num);}}}var seen={},fin=[];for(var ri=0;ri<out.length;ri++){if(!seen[out[ri]]){seen[out[ri]]=true;fin.push(out[ri])}}return fin}function showUpdateModal(){document.getElementById("updateModal").style.display="block";document.getElementById("inputFrontend").value=(dataObj.frontend||[]).join("\n");document.getElementById("inputBackend1").value=(dataObj.backend1||[]).join("\n");document.getElementById("inputBackend2").value=(dataObj.backend2||[]).join("\n");document.getElementById("countFrontend").textContent="("+(dataObj.frontend||[]).length+" 条已有)";document.getElementById("countBackend1").textContent="("+(dataObj.backend1||[]).length+" 条已有)";document.getElementById("countBackend2").textContent="("+(dataObj.backend2||[]).length+" 条已有)";document.getElementById("updateMsg").textContent="修改内容后保存即覆盖，空白则清空";document.getElementById("updateMsg").style.color="rgba(255,255,255,0.4)";}function updateCounts(){var fe=(dataObj.frontend||[]).length;var b1=(dataObj.backend1||[]).length;var b2=(dataObj.backend2||[]).length;document.getElementById("countFrontend").textContent="("+fe+" 条已有)";document.getElementById("countBackend1").textContent="("+b1+" 条已有)";document.getElementById("countBackend2").textContent="("+b2+" 条已有)";}document.getElementById("inputFrontend").addEventListener("input",updateCounts);document.getElementById("inputBackend1").addEventListener("input",updateCounts);document.getElementById("inputBackend2").addEventListener("input",updateCounts);function hideUpdateModal(){document.getElementById("updateModal").style.display="none";}async function clearFrontend(){if(confirm("确定要清除主数组吗？")){document.getElementById("inputFrontend").value="";dataObj.frontend=[];updateCounts();await saveAllArraysToStorage();}}async function clearBackend1(){if(confirm("确定要清除 backend1 吗？")){document.getElementById("inputBackend1").value="";dataObj.backend1=[];updateCounts();await saveAllArraysToStorage();}}async function clearBackend2(){if(confirm("确定要清除 backend2 吗？")){document.getElementById("inputBackend2").value="";dataObj.backend2=[];updateCounts();await saveAllArraysToStorage();}}async function saveAllArrays(){var msgEl=document.getElementById("updateMsg");try{var fe=parseInput(document.getElementById("inputFrontend").value);var b1=parseInput(document.getElementById("inputBackend1").value);var b2=parseInput(document.getElementById("inputBackend2").value);dataObj.frontend=fe;dataObj.backend1=b1;dataObj.backend2=b2;await saveAllArraysToStorage();numbersArray=fe.concat(b1,b2);msgEl.textContent="保存成功！共"+numbersArray.length+"条数据。";msgEl.style.color="#4fc3f7";setTimeout(hideUpdateModal,2000);}catch(e){msgEl.textContent="保存失败："+e.message;msgEl.style.color="#ef5350";}}</script>
 </body>
 </html>
